@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lnf-trader:latest
+    container_name: lnf-trader
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - RUN_MODE=${RUN_MODE:-paper}
+      - LIVE_SIZING=${LIVE_SIZING:-0}
+    volumes:
+      - ./data:/data
+    ports:
+      - "8501:8501"
+    # Phase 16.1 (v0.0.13) — switched healthcheck from SQLite check (which
+    # passed even when the bot was dead, only Streamlit alive) to Streamlit's
+    # built-in /_stcore/health AND a check that python -m app.main is alive.
+    # Both must pass for the container to be considered healthy.
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8501/_stcore/health && pgrep -f 'app.main' >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s

@@ -1,0 +1,14 @@
+{
+  "SBER": {
+    "ticker": "SBER",
+    "direction": "NEUTRAL",
+    "strength": 0.0,
+    "key_themes": [],
+    "rationale": "",
+    "expected_to_positive": "",
+    "expected_to_negative": "",
+    "built_at": "2026-05-26T22:33:58.379500+00:00",
+    "n_news": 4,
+    "backend": ""
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "PLZL_AFLT": {
+    "ticker_a": "PLZL",
+    "ticker_b": "AFLT",
+    "alpha": 2.344658977222377,
+    "beta": 1.3765979513329674,
+    "mu": 8.558810226201207e-15,
+    "sigma": 0.015603025727667719,
+    "adf_pvalue": 4.79572934848883e-05,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 4.79572934848883e-05
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "LKOH_MGNT": {
+    "ticker_a": "LKOH",
+    "ticker_b": "MGNT",
+    "alpha": 5.610448091873726,
+    "beta": 0.37677938513148135,
+    "mu": 1.1976951417168355e-14,
+    "sigma": 0.016106634546384963,
+    "adf_pvalue": 0.01679707869931232,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.01679707869931232
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "T_GMKN": {
+    "ticker_a": "T",
+    "ticker_b": "GMKN",
+    "alpha": 3.1923784406324867,
+    "beta": 0.5235548459409636,
+    "mu": -2.3640348937685e-14,
+    "sigma": 0.01090792635083343,
+    "adf_pvalue": 0.0072838050676937854,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.0072838050676937854
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "AFLT_SNGSP": {
+    "ticker_a": "AFLT",
+    "ticker_b": "SNGSP",
+    "alpha": 2.6010565555203,
+    "beta": 0.3408779850329302,
+    "mu": 2.9471374835504157e-15,
+    "sigma": 0.016418872091246612,
+    "adf_pvalue": 0.021339659650736517,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.021339659650736517
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "YDEX_SNGSP": {
+    "ticker_a": "YDEX",
+    "ticker_b": "SNGSP",
+    "alpha": 6.322874704003836,
+    "beta": 0.5365165007202047,
+    "mu": 5.167583532800729e-15,
+    "sigma": 0.017426902356505833,
+    "adf_pvalue": 0.2618119820902658,
+    "qualified": false,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.2618119820902658
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "YDEX_GMKN": {
+    "ticker_a": "YDEX",
+    "ticker_b": "GMKN",
+    "alpha": 5.522196014160938,
+    "beta": 0.5735472898464034,
+    "mu": -1.3080445817401844e-14,
+    "sigma": 0.011814947422406567,
+    "adf_pvalue": 0.02133479702399052,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.02133479702399052
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "T_CHMF": {
+    "ticker_a": "T",
+    "ticker_b": "CHMF",
+    "alpha": 3.0766260747043574,
+    "beta": 0.40173021334973313,
+    "mu": 3.1589545794001124e-14,
+    "sigma": 0.01045617662367944,
+    "adf_pvalue": 0.03799662719949553,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.03799662719949553
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "YDEX_PLZL": {
+    "ticker_a": "YDEX",
+    "ticker_b": "PLZL",
+    "alpha": 2.923811937120026,
+    "beta": 0.7041101333169463,
+    "mu": 5.665501737784132e-14,
+    "sigma": 0.017172780098901365,
+    "adf_pvalue": 0.01579506091520955,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.01579506091520955
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "GMKN_SNGSP": {
+    "ticker_a": "GMKN",
+    "ticker_b": "SNGSP",
+    "alpha": 1.3537112069602513,
+    "beta": 0.9467147385704922,
+    "mu": -3.9564311423005575e-15,
+    "sigma": 0.021341882029412652,
+    "adf_pvalue": 0.1149805634938531,
+    "qualified": false,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.1149805634938531
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "T_SNGSP": {
+    "ticker_a": "T",
+    "ticker_b": "SNGSP",
+    "alpha": 4.043728050841125,
+    "beta": 0.45762434360755044,
+    "mu": 2.0354088784794538e-14,
+    "sigma": 0.018388065584585913,
+    "adf_pvalue": 0.33468250306591524,
+    "qualified": false,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.33468250306591524
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "LKOH_NVTK": {
+    "ticker_a": "LKOH",
+    "ticker_b": "NVTK",
+    "alpha": 5.08477632397241,
+    "beta": 0.49451425048084285,
+    "mu": -9.9314496021014e-15,
+    "sigma": 0.016697085462284714,
+    "adf_pvalue": 0.08028563981190562,
+    "qualified": false,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.08028563981190562
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "T_ALRS": {
+    "ticker_a": "T",
+    "ticker_b": "ALRS",
+    "alpha": 4.986327772068926,
+    "beta": 0.22582784308555526,
+    "mu": -1.6727360237685692e-15,
+    "sigma": 0.012980429825656168,
+    "adf_pvalue": 0.06018812060617424,
+    "qualified": false,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.06018812060617424
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "T_MGNT": {
+    "ticker_a": "T",
+    "ticker_b": "MGNT",
+    "alpha": 3.63484863575343,
+    "beta": 0.2687037515903137,
+    "mu": -4.695503245481329e-14,
+    "sigma": 0.011756881868699937,
+    "adf_pvalue": 0.02502394395831829,
+    "qualified": true,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.02502394395831829
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "T_NLMK": {
+    "ticker_a": "T",
+    "ticker_b": "NLMK",
+    "alpha": 4.094816512751108,
+    "beta": 0.3695026416516116,
+    "mu": -4.781360492719008e-14,
+    "sigma": 0.012646880562116006,
+    "adf_pvalue": 0.09677899670500562,
+    "qualified": false,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.09677899670500562
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  },
+  "MOEX_MTSS": {
+    "ticker_a": "MOEX",
+    "ticker_b": "MTSS",
+    "alpha": 1.893418167829702,
+    "beta": 0.6005377926798273,
+    "mu": -2.1087508843486306e-14,
+    "sigma": 0.011085649913382926,
+    "adf_pvalue": 0.10274908583031822,
+    "qualified": false,
+    "last_refit_iso": "2026-05-26T16:55:03.554445+00:00",
+    "last_z_values": [],
+    "last_entry_iso": "",
+    "adf_history": [
+      {
+        "iso": "2026-05-26T16:55:03.554445+00:00",
+        "adf_p": 0.10274908583031822
+      }
+    ],
+    "ttl_disqualified": false,
+    "ttl_reason": "",
+    "open_entry_bar_iso": "",
+    "open_entry_direction": 0
+  }
+}

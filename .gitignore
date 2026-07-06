@@ -1,0 +1,65 @@
+# Secrets
+.env
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+.Python
+build/
+dist/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Data volumes (mount-only, not in repo)
+data/trades.db
+data/decisions.db
+data/chroma/
+# Phase 11.18 — include models in git so Docker COPY data/models/ /opt/seed_models/
+# works during build. *.cbm/*.pkl are < 200KB total, needed for first-boot seed.
+# data/models/*.cbm
+# data/models/*.pkl
+data/logs/
+data/snapshots/
+data/morning_plans/
+
+# CSV exports (large, use DVC or download scripts)
+data/historical_csv/
+
+# Streamlit
+# Phase 19 (v0.0.20) — DO include .streamlit/config.toml so CORS/XSRF
+# settings ship with the image. Only exclude per-user secret overrides.
+.streamlit/secrets.toml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Phase 13 — feeds.db IS in the repo: it's the 1-year news history backfill
+# that start.sh seeds into /data on first boot for RAG-retrieval.
+# Only the WAL artifacts (db-shm, db-wal) are excluded.
+data/feeds.db-shm
+data/feeds.db-wal
+# Phase 19 (v0.0.17) — exclude WAL/SHM for all SQLite databases (any path).
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Phase 22 (v0.0.23) — local-only artefacts from model training.
+data/training_cache/
+catboost_info/
+data/models/*.backup.*
+data/models/*.bkp.*
+data/models/*.pre_v23.*

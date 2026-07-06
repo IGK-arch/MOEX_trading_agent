@@ -1,0 +1,152 @@
+stages:
+  - test
+  - build
+  - deploy
+  - ops
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  IMAGE_LATEST: $CI_REGISTRY_IMAGE:latest
+
+test:
+  stage: test
+  image: python:3.11-slim
+  before_script:
+    - apt-get update && apt-get install -y --no-install-recommends build-essential
+    - pip install --no-cache-dir pytest pytest-asyncio ruff
+        httpx 'pydantic>=2.7' feedparser selectolax natasha
+        'numpy>=1.24' 'pandas>=2.0' scipy statsmodels hmmlearn catboost
+        aiosqlite 'datasketch>=1.6' python-json-logger apscheduler
+        pandas-ta-classic ta-lib orjson msgspec eval_type_backport
+  script:
+    - ruff check app/ tests/
+    - pytest tests/unit -v --asyncio-mode=auto
+  artifacts:
+    when: always
+    reports:
+      junit: pytest-report.xml
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+build:
+  stage: build
+  image: docker:24-cli
+  services:
+    - docker:24-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  script:
+    # Phase 16 (v0.0.12) — --pull forces fresh FROM python:3.11-slim
+    # base; --build-arg APP_VERSION=$CI_COMMIT_SHORT_SHA invalidates
+    # cache from the very first ENV line so all subsequent layers rebuild.
+    # Use FORCE_NO_CACHE=1 in pipeline Variables to bypass cache entirely.
+    - |
+      NO_CACHE_FLAG=""
+      if [ "$FORCE_NO_CACHE" = "1" ]; then
+        NO_CACHE_FLAG="--no-cache"
+      fi
+      docker build $NO_CACHE_FLAG --pull \
+        --build-arg APP_VERSION="$CI_COMMIT_SHORT_SHA" \
+        -t "$IMAGE_TAG" -t "$IMAGE_LATEST" .
+    - docker push "$IMAGE_TAG"
+    - docker push "$IMAGE_LATEST"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+
+deploy:yandex:
+  stage: deploy
+  image: alpine:3.19
+  before_script:
+    - apk add --no-cache openssh-client rsync
+    - eval $(ssh-agent -s)
+    - chmod 600 "$YANDEX_SSH_KEY"
+    - ssh-add "$YANDEX_SSH_KEY"
+    - mkdir -p ~/.ssh && ssh-keyscan -H "$YANDEX_HOST" >> ~/.ssh/known_hosts
+  script:
+    # Phase 16 (v0.0.12) — explicit `docker compose pull` THEN remove old
+    # image so the fresh one is guaranteed to be used, regardless of
+    # imagePullPolicy. `--force-recreate` rebuilds the container even if
+    # config hasn't changed. `--remove-orphans` cleans up any stale ones.
+    - |
+      # Phase 16.1 (v0.0.13) — removed `--policy=always` flag because it
+      # requires Docker Compose v2.22+ (released Oct 2023) and fails with
+      # `unknown flag: --policy` on older versions common on Ubuntu LTS.
+      # Plain `docker compose pull` already fetches the latest tag from
+      # registry. The subsequent `--force-recreate` guarantees the new
+      # image is used.
+      ssh "$YANDEX_USER@$YANDEX_HOST" "
+        cd /opt/lnf-trader &&
+        docker compose pull &&
+        docker compose up -d --force-recreate --remove-orphans &&
+        docker image prune -f
+      "
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual
+  environment:
+    name: production
+    url: http://$YANDEX_HOST:8501
+
+ops:restart_bot:
+  stage: ops
+  image: alpine:3.19
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - chmod 600 "$YANDEX_SSH_KEY"
+    - ssh-add "$YANDEX_SSH_KEY"
+    - mkdir -p ~/.ssh && ssh-keyscan -H "$YANDEX_HOST" >> ~/.ssh/known_hosts
+  script:
+    - ssh "$YANDEX_USER@$YANDEX_HOST" "cd /opt/lnf-trader && docker compose restart app"
+  rules:
+    - if: $ENABLE_OPS_BUTTONS == "yes"
+      when: manual
+
+ops:stop_bot:
+  stage: ops
+  image: alpine:3.19
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - chmod 600 "$YANDEX_SSH_KEY"
+    - ssh-add "$YANDEX_SSH_KEY"
+    - mkdir -p ~/.ssh && ssh-keyscan -H "$YANDEX_HOST" >> ~/.ssh/known_hosts
+  script:
+    - ssh "$YANDEX_USER@$YANDEX_HOST" "cd /opt/lnf-trader && docker compose stop"
+  rules:
+    - if: $ENABLE_OPS_BUTTONS == "yes"
+      when: manual
+
+ops:start_bot:
+  stage: ops
+  image: alpine:3.19
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - chmod 600 "$YANDEX_SSH_KEY"
+    - ssh-add "$YANDEX_SSH_KEY"
+    - mkdir -p ~/.ssh && ssh-keyscan -H "$YANDEX_HOST" >> ~/.ssh/known_hosts
+  script:
+    - ssh "$YANDEX_USER@$YANDEX_HOST" "cd /opt/lnf-trader && docker compose start"
+  rules:
+    - if: $ENABLE_OPS_BUTTONS == "yes"
+      when: manual
+
+ops:tail_logs:
+  stage: ops
+  image: alpine:3.19
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - chmod 600 "$YANDEX_SSH_KEY"
+    - ssh-add "$YANDEX_SSH_KEY"
+    - mkdir -p ~/.ssh && ssh-keyscan -H "$YANDEX_HOST" >> ~/.ssh/known_hosts
+  script:
+    - ssh "$YANDEX_USER@$YANDEX_HOST" "cd /opt/lnf-trader && docker compose logs --tail 200 app"
+  rules:
+    - if: $ENABLE_OPS_BUTTONS == "yes"
+      when: manual

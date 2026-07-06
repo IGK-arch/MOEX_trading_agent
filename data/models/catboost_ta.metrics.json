@@ -1,0 +1,22 @@
+{
+  "n_samples_total": 6227,
+  "n_train": 4919,
+  "n_test": 1246,
+  "n_purged": 62,
+  "pos_rate_train": 0.47,
+  "pos_rate_test": 0.436,
+  "train_accuracy": 0.804,
+  "test_accuracy": 0.685,
+  "test_auc": 0.745,
+  "cv_n_splits": 5,
+  "cv_auc_mean": 0.739,
+  "cv_auc_std": 0.021,
+  "cv_accuracy_mean": 0.676,
+  "feature_importance_top5": {
+    "expected_rr": 17.447,
+    "rsi": 8.538,
+    "bb_percent_b": 4.468,
+    "swing_low_dist_pct": 3.472,
+    "res_atrs": 3.465
+  }
+}

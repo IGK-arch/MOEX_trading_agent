@@ -1,0 +1,56 @@
+# Git
+.git/
+.gitignore
+.gitlab-ci.yml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local data (mounted as volume).
+# Phase 11.19 — exclude everything in data/ EXCEPT models/, which the
+# Dockerfile needs to seed /opt/seed_models/ on first boot.
+# Phase 16 (v0.0.12) — REMOVED `data/models/*.json` exclusion that was
+# silently dropping pair_state.json from the image. PairTrader needs it
+# on startup or refit_all_pairs falls back to defaults.
+data/*
+!data/models/
+!data/feeds.db
+*.db-journal
+data/feeds.db-shm
+data/feeds.db-wal
+
+# Docs and dev artifacts
+docs/
+TA/
+anomaly_detector_v1/
+*.log
+*.jsonl
+
+# Secrets
+.env
+.env.local
+
+# Tests (no need in production image)
+tests/
+
+# Plans / artifacts
+notebooks/

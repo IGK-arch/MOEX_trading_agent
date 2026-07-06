@@ -1,0 +1,58 @@
+# Phase 19 (v0.0.20) — Streamlit server config.
+#
+# Why a config.toml AND CLI flags in start.sh?
+# Two reasons:
+#   1) Defence-in-depth: if the start.sh quoting breaks (which has
+#      happened twice in this hackathon), the config.toml still applies.
+#   2) Streamlit re-reads config.toml on every WebSocket reconnect, so
+#      flags persist across reloads even if the launcher restarts mid-run.
+#
+# Both files MUST stay in sync. Update both when changing server behavior.
+
+[server]
+# Listen on all interfaces so the k8s Service can route traffic.
+address = "0.0.0.0"
+port = 8501
+
+# Skip the "open browser" handshake (headless k8s pod).
+headless = true
+
+# CRITICAL: Streamlit's default XSRF protection rejects ANY HTTP request
+# whose Origin / Referer header doesn't match the bound address. K8s
+# liveness probes come from a pod-internal IP (not localhost), so the
+# probe gets an "Empty reply from server" → marked failed → SIGTERM.
+# Same for the public ingress URL 93.77.180.244:8501.
+enableCORS = false
+enableXsrfProtection = false
+
+# Don't burn CPU watching app/dashboard/*.py changes (we don't hot-reload
+# in production).
+fileWatcherType = "none"
+
+# WebSocket compression sometimes interacts badly with k8s ingress proxies.
+enableWebsocketCompression = false
+
+# Defensive: allow large message sizes (default 200 MB is fine, kept
+# for documentation).
+maxMessageSize = 200
+
+# Per-request timeout — Streamlit kills idle browser sessions after this.
+# 30 min is plenty for our jury demos.
+runOnSave = false
+
+[browser]
+gatherUsageStats = false
+serverAddress = "0.0.0.0"
+serverPort = 8501
+
+[client]
+showErrorDetails = true
+toolbarMode = "minimal"
+
+[theme]
+# Match the "404: Loss Not Found" branding from streamlit_app.py.
+base = "dark"
+primaryColor = "#FF4B4B"
+
+[logger]
+level = "info"
